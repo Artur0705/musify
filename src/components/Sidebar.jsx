@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { RiCloseLine } from "react-icons/ri";
 import { logo } from "../assets";
 import { links } from "../assets/constants";
@@ -23,11 +23,16 @@ const NavLinks = ({ handleClick }) => (
 
 const Sidebar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <>
       <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#191624]">
-        <img src={logo} alt="logo" className="w-full h-24 object-contain" />
+        <img
+          onClick={() => navigate("/")}
+          src={logo}
+          alt="logo"
+          className="w-full h-24 object-contain cursor-pointer"
+        />
         <NavLinks />
       </div>
       <div className="absolute md:hidden block top-6 right-3">
