@@ -1,3 +1,5 @@
+import React from "react";
+
 const TopCharts = () => {
   return <div>TopCharts</div>;
 };
