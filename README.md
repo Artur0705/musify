@@ -8,9 +8,9 @@
 2. [Features](#features)
 3. [Installation](#installation)
 4. [Demo](#demo)
-5. [Dependencies](##dependencies)
-6. [Future Improvements](##FutureImprovements)
-7. [Contributing](#Contributing)
+5. [Dependencies](#dependencies)
+6. [Future Improvements](#future-improvements)
+7. [Contributing](#contributing)
 8. [License](#license)
 
 ## Introduction
