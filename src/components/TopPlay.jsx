@@ -10,8 +10,10 @@ import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 import "swiper/swiper.min.css";
 
+// Enables FreeMode plugin for Swiper.
 SwiperCore.use([FreeMode]);
 
+// Represents each individual song card in the top chart.
 const TopChartCard = ({
   song,
   i,
@@ -49,14 +51,22 @@ const TopChartCard = ({
 
 const TopPlay = () => {
   const dispatch = useDispatch();
+
+  // Extract player-related state from Redux store.
   const { activeSong, isPlaying } = useSelector((state) => state.player);
+
+  // Fetch top chart data using a Redux Toolkit query hook.
   const { data } = useGetTopChartsQuery();
+
+  // useRef to capture div element for scrolling purposes.
   const divRef = useRef(null);
 
   useEffect(() => {
+    // Scrolls to the captured div smoothly when the component mounts/updates.
     divRef.current.scrollIntoView({ behavior: "smooth" });
   });
 
+  // Gets top 5 plays from the fetched data.
   const topPlays = data?.slice(0, 5);
 
   const handlePauseClick = () => {
