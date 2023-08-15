@@ -23,12 +23,12 @@ const Searchbar = () => {
       autoComplete="off"
       className="p-2 text-gray-400 focus-within:text-gray-600"
     >
-      // Accessibility label for screen readers
+      {/* {Accessibility label for screen readers} */}
       <label htmlFor="search-field" className="sr-only">
         Search All Songs
       </label>
       <div className="flex flex-row justify-start items-center">
-        // Search icon from react-icons
+        {/* {  Search icon from react-icons} */}
         <FiSearch className="w-5 h-5 ml-4" />
         <input
           name="search-field"

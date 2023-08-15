@@ -12,10 +12,10 @@ const RelatedSongs = ({
 }) => {
   return (
     <div className="flex flex-col">
-      // Displaying the header title for the related songs section
+      {/* Displaying the header title for the related songs section */}
       <h1 className="font-bold text3xl text-white">Related Songs</h1>
       <div className="mt-6 w-full flex flex-col">
-        // Mapping through the data prop to generate a list of related songs
+        {/* Mapping through the data prop to generate a list of related songs */}
         {data?.map((song, i) => (
           // SongBar component displays individual song details
           <SongBar
