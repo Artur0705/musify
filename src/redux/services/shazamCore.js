@@ -1,6 +1,7 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+// The API key for Shazam Core from environment variables.
 const apiKey = import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY;
+
+// Create the API configuration.
 export const shazamCoreApi = createApi({
   reducerPath: "shazamCoreApi",
   baseQuery: fetchBaseQuery({
@@ -10,6 +11,7 @@ export const shazamCoreApi = createApi({
       return headers;
     },
   }),
+  // Define the endpoints of the API.
   endpoints: (builder) => ({
     getTopCharts: builder.query({ query: () => "v1/charts/world" }),
     getSongDetails: builder.query({
@@ -34,6 +36,7 @@ export const shazamCoreApi = createApi({
   }),
 });
 
+// Export the hooks for all the endpoints.
 export const {
   useGetTopChartsQuery,
   useGetSongDetailsQuery,

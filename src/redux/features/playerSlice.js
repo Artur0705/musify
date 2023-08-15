@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentSongs: [],
-  currentIndex: 0,
-  isActive: false,
-  isPlaying: false,
-  activeSong: {},
-  genreListId: "",
+  currentSongs: [], // Tracks the current list of songs
+  currentIndex: 0, // Tracks the index of the currently playing song
+  isActive: false, // Determines if a song is active or not
+  isPlaying: false, // Determines if a song is playing or paused
+  activeSong: {}, // Stores the currently active song details
+  genreListId: "", // Stores the currently selected genre ID
 };
 
 const playerSlice = createSlice({
@@ -14,8 +14,10 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     setActiveSong: (state, action) => {
+      // Update the active song and potentially the current song list.
       state.activeSong = action.payload.song;
 
+      // Depending on the payload structure, update the current song list accordingly.
       if (action.payload?.data?.tracks?.hits) {
         state.currentSongs = action.payload.data.tracks.hits;
       } else if (action.payload?.data?.properties) {
@@ -29,6 +31,7 @@ const playerSlice = createSlice({
     },
 
     nextSong: (state, action) => {
+      // Update the active song to the next song in the list.
       if (state.currentSongs[action.payload]?.track) {
         state.activeSong = state.currentSongs[action.payload]?.track;
       } else {
@@ -40,6 +43,7 @@ const playerSlice = createSlice({
     },
 
     prevSong: (state, action) => {
+      // Update the active song to the previous song in the list.
       if (state.currentSongs[action.payload]?.track) {
         state.activeSong = state.currentSongs[action.payload]?.track;
       } else {
@@ -51,15 +55,18 @@ const playerSlice = createSlice({
     },
 
     playPause: (state, action) => {
+      // Toggle the play/pause state based on the payload.
       state.isPlaying = action.payload;
     },
 
     selectGenreListId: (state, action) => {
+      // Update the genreListId to the selected genre.
       state.genreListId = action.payload;
     },
   },
 });
 
+// Export the actions for use in components.
 export const {
   setActiveSong,
   nextSong,
@@ -68,4 +75,5 @@ export const {
   selectGenreListId,
 } = playerSlice.actions;
 
+// Export the reducer to be used in the Redux store.
 export default playerSlice.reducer;

@@ -8,25 +8,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectGenreListId } from "../redux/features/playerSlice";
 
 const Discover = () => {
+  // Extract relevant state (current song, play status, selected genre) from the Redux store.
   const { activeSong, isPlaying, genreListId } = useSelector(
     (state) => state.player
   );
+
+  // Fetch songs based on the selected genre using a Redux Toolkit query hook.
   const { data, isFetching, error } = useGetSongsByGenreQuery(
     genreListId || "HIP_HOP_RAP"
   );
+
   const dispatch = useDispatch();
 
+  // Show loader while fetching.
   if (isFetching) return <Loader title="Loading Songs ..." />;
+
+  // Display an error component in case of any fetch errors.
   if (error) return <Error />;
 
+  // Find the genre title that matches the selected genreListId from the constants.
   const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
 
   return (
     <div className="flex flex-col">
+      {/* Genre title and dropdown section */}
       <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
         <h2 className="font-bold text-3xl text-white text-left">
           Discover {genreTitle}
         </h2>
+        {/* Dropdown to select a genre. On change, it updates the genre in the Redux store. */}
         <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value={genreListId || "hip-hop"}
@@ -39,6 +49,7 @@ const Discover = () => {
           ))}
         </select>
       </div>
+      {/* Songs grid section */}
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((song, i) => (
           <SongCard
