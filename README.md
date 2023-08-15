@@ -145,7 +145,7 @@ npm install
 5. Start the application:
 
 ```
-npm start
+npm run dev
 ```
 
 ## Demo
