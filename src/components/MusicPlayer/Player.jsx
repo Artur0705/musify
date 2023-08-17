@@ -13,6 +13,13 @@ const Player = ({
   // A reference to access the audio DOM element directly.
   const ref = useRef(null);
 
+  // URI extraction with safety checks
+  const uri = activeSong?.hub?.actions?.[1]?.uri;
+  if (!uri) {
+    console.log("URI is undefined", activeSong);
+    return null; // Or render some error/fallback component
+  }
+
   // If the audio DOM element is available,
   if (ref.current) {
     // play the song if isPlaying is true
@@ -39,8 +46,8 @@ const Player = ({
   return (
     // This is the actual HTML5 audio player.
     <audio
-      // Source of the song. Navigating through the activeSong object to get the URI.
-      src={activeSong?.hub?.actions[1]?.uri}
+      // Source of the song.
+      src={uri}
       // ref is linked to the audio element to access its properties and methods.
       ref={ref}
       // Determines if the audio should play in a loop.
